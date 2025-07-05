@@ -1,0 +1,72 @@
+{
+  "printer_issue": {
+    "user_says": [
+      "my kitchen printer isn't working",
+      "printer offline",
+      "printer not printing",
+      "printer stopped working"
+    ],
+    "assistant_replies": [
+      "Hmm, let me take a look at your printer status... looks like it's offline.",
+      "That usually means it's disconnected. Want help reconnecting it?"
+    ],
+    "follow_ups": {
+      "yes": "Make sure the printer is powered on and the cable is connected securely. If it\u2019s a Wi-Fi printer, try restarting the router.",
+      "no": "Alright, let me know if you need anything else with it later."
+    }
+  },
+  "order_missing": {
+    "user_says": [
+      "I can't find an order",
+      "where\u2019s the customer\u2019s order",
+      "order disappeared",
+      "I lost an order"
+    ],
+    "assistant_replies": [
+      "No worries. Do you remember anything about it \u2014 like the table number, time, or part of the phone number?"
+    ],
+    "follow_ups": {
+      "table_number": "Got it \u2014 Table 3 had an order at 12:46 PM. Sandwich and Coke. Want to view full details?",
+      "don\u2019t know": "Okay, let\u2019s try searching by time or item then."
+    }
+  },
+  "pos_crash": {
+    "user_says": [
+      "POS crashed",
+      "app froze",
+      "can't bill customer",
+      "billing screen stuck"
+    ],
+    "assistant_replies": [
+      "That\u2019s frustrating, sorry. A quick restart usually helps. Once you're back, go to 'Recent Orders' \u2014 the last one should be there waiting."
+    ]
+  },
+  "change_price": {
+    "user_says": [
+      "how to change menu price",
+      "edit item price",
+      "update pricing",
+      "change price of item"
+    ],
+    "assistant_replies": [
+      "Sure. Head to Menu > Item List, then tap the item. You'll see the price field there \u2014 just edit and save.",
+      "Changes show up right away on the POS."
+    ]
+  },
+  "complaint": {
+    "user_says": [
+      "no one came to set it up",
+      "still waiting for support",
+      "I didn\u2019t get help",
+      "setup not done"
+    ],
+    "assistant_replies": [
+      "I\u2019m really sorry to hear that. Let\u2019s log this now.",
+      "Do you remember when you installed the app? I can tag the issue for follow-up."
+    ],
+    "follow_ups": {
+      "date_given": "Thanks. I\u2019ve submitted this for review. A team member should call you soon.",
+      "no_date": "That\u2019s okay. I\u2019ll still mark this as urgent and flag it for manual follow-up."
+    }
+  }
+}
