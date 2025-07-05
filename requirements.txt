@@ -3,3 +3,4 @@ python-dotenv
 uvicorn
 openai
 elevenlabs
+python-multipart
