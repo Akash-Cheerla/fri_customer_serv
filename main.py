@@ -10,7 +10,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from openai import OpenAI
 from elevenlabs.client import ElevenLabs
-
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.getenv("PORT", 8081)), reload=True)
 # Load API keys
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
