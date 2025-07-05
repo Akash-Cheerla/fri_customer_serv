@@ -10,12 +10,21 @@ const issueTags = [
   { keywords: ["bill", "charge", "tax", "amount"], tag: "💵 Billing Issue" }
 ];
 
+const closingTriggers = [
+  "yes", "that's all", "thank you", "thanks", "okay", "cool", "done", "perfect", "great"
+];
+
 function detectIssueTag(text) {
   const lower = text.toLowerCase();
   for (const { keywords, tag } of issueTags) {
     if (keywords.some(word => lower.includes(word))) return tag;
   }
   return null;
+}
+
+function isClosureSignal(text) {
+  const lower = text.trim().toLowerCase();
+  return closingTriggers.some(phrase => lower === phrase || lower.includes(phrase));
 }
 
 function resetConversation() {
@@ -113,7 +122,12 @@ async function startVoiceLoop() {
           if (data.assistant_text.toLowerCase().includes("provide a preferred date and time")) {
             triggerCallbackPrompt();
           } else if (!data.assistant_text.includes("END OF CONVERSATION")) {
-            startVoiceLoop();
+            if (isClosureSignal(lastUserText)) {
+              logMessage("assistant", "You're welcome! We'll be in touch soon. Have a great day! END OF CONVERSATION");
+              setStatus("✅ Conversation complete. You can reset or request a callback.");
+            } else {
+              startVoiceLoop();
+            }
           } else {
             document.getElementById("formSection").style.display = "block";
             document.getElementById("resetBtn").style.display = "inline-block";
@@ -207,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
   callbackBtn.style.marginLeft = "10px";
   container.appendChild(callbackBtn);
 
-  // Remove the audio element if it's visible
   const audioEl = document.querySelector("audio");
   if (audioEl) audioEl.remove();
 });
