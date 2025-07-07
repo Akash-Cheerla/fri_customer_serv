@@ -4,3 +4,4 @@ uvicorn
 openai
 elevenlabs
 python-multipart
+faster_whisper
