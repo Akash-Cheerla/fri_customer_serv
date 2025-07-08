@@ -47,11 +47,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/frontend", StaticFiles(directory="public"), name="frontend")
+app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
 
 @app.get("/")
 async def serve_index():
-    return FileResponse("public/index.html")
+    return FileResponse("frontend/index.html")
 
 @app.get("/initial-message")
 async def initial_message():
