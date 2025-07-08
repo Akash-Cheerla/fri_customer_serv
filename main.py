@@ -47,11 +47,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
+app.mount("/frontend", StaticFiles(directory="public"), name="frontend")
 
 @app.get("/")
 async def serve_index():
-    return FileResponse("frontend/index.html")
+    return FileResponse("public/index.html")
 
 @app.get("/initial-message")
 async def initial_message():
@@ -185,10 +185,11 @@ async def request_callback(request: Request):
 
     try:
         os.makedirs("callback_requests", exist_ok=True)
+        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
         filename = f"{name.replace(' ', '_')}_{phone.replace('+','')}.txt"
         file_path = os.path.join("callback_requests", filename)
         with open(file_path, "w") as f:
-            f.write(f"Name: {name}\nPhone: {phone}\nIssue: {issue}\n")
+            f.write(f"Timestamp: {timestamp}\nName: {name}\nPhone: {phone}\nIssue: {issue}\n")
         return {"message": "📞 Callback request saved successfully."}
     except Exception as e:
         print("❌ Failed to save callback request:", e)

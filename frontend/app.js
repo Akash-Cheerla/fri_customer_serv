@@ -235,16 +235,21 @@ function triggerCallbackPrompt() {
   const name = prompt("Your Name:", "");
   const phone = prompt("Phone Number:", "");
   const time = prompt("Preferred Date/Time for Callback:", "");
-  if (name && phone) {
+  const issue = prompt("Briefly describe your issue:", "");
+
+  if (name && phone && issue) {
     fetch("/request-callback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, phone, issue: lastUserText + " | Requested callback: " + time })
+      body: JSON.stringify({
+        name,
+        phone,
+        issue: `${issue} | Requested callback: ${time}`
+      })
     })
       .then(res => res.json())
       .then(data => alert(data.message || "Callback submitted!"))
       .catch(err => console.error("Callback submission failed:", err));
   }
 }
-
 window.fetchInitialMessage = fetchInitialMessage;
