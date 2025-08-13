@@ -126,7 +126,7 @@ async def voice_stream(audio: UploadFile = File(...)):
 
         generate_start = time.perf_counter()
         stream = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-5",
             messages=messages,
             temperature=0.5,
             stream=True
